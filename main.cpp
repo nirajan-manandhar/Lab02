@@ -8,14 +8,15 @@
 
 using namespace std;
 
-vector<double> doubleVector;
+vector<double> doubleVector; //Vector to store all the read values, dynamic array
 
-
+// Creates a file called Readings.txt
 void createFile() {
     ofstream fout;
     fout.open("Readings.txt");
 }
 
+//Generates a random integer to serve as the index upperbound
 int createInt(){
     int maxInt;
 
@@ -28,6 +29,7 @@ int createInt(){
     return maxInt;
 }
 
+//Function that returns a randomly generated double
 double createDouble() {
     double currDouble;
 
@@ -40,6 +42,7 @@ double createDouble() {
     return currDouble ;
 }
 
+//Function that writes an integer/double pairs on each line.
 void writeFile(){
     ofstream fout;
     fout.open("Readings.txt");
@@ -51,6 +54,7 @@ void writeFile(){
     }
 }
 
+//Gets the double values in the file Reading.txt and stores them in a vector
 void readFile() {
     string line;
     double doubleValue{0};
@@ -66,15 +70,16 @@ void readFile() {
     }
 }
 
-
+//Performs calculations to get number of doubles, sum of elements, average of all elements
+// and median of all values, then prints them out.
 void calculate() {
     int vectorSize = doubleVector.size();
     double sumOfElements{0};
-    double median = doubleVector.at(vectorSize/2);
-
     for(double value:doubleVector){
         sumOfElements += value;
     }
+
+    double median = doubleVector.at(vectorSize/2);
     double average = (sumOfElements/(double) vectorSize);
 
     sort(doubleVector.begin(), doubleVector.end());
@@ -88,8 +93,7 @@ void calculate() {
 }
 
 
-
-
+//Main function
 int main() {
     createFile();
     writeFile();
